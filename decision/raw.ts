@@ -3,8 +3,8 @@
  * @module
  */
 
-import { ResourceID } from "../scalars.ts";
-import { RawPolicy } from "../raw.ts";
+import type { ResourceID } from "../mod.ts";
+import type { RawPolicy } from "../raw.ts";
 import {
   Decision,
   DecisionPolicy,
@@ -83,33 +83,20 @@ export const wrap_decision_policy = <Query>(
  */
 type InputConverter<Query> = (raw_input: unknown) => Query;
 
-const to_raw_decisions = (decisions: Decision[]): RawDecision[] => {
-  // Note: type-safe immutable version
-  // return decisions.map((decision) => ({
-  //   ...decision,
-  //   header: {
-  //     ...decision.header,
-  //     type: to_raw_decision_type(decision.header.type),
-  //     severity: to_raw_decision_severity(decision.header.severity),
-  //   },
-  //   payload: JSON.stringify(decision.payload),
-  // }));
-
-  decisions.forEach((decision) => {
-    // @ts-expect-error - in-place type conversion
-    decision.header.type = to_raw_decision_type(decision.header.type);
-
-    // @ts-expect-error - in-place type conversion
-    decision.header.severity = to_raw_decision_severity(
-      decision.header.severity,
-    );
-
-    decision.payload = JSON.stringify(decision.payload, json_replacer);
-  });
-
-  // @ts-expect-error - in-place type conversion
-  return decisions;
-};
+const to_raw_decisions = (decisions: Decision[]): RawDecision[] =>
+  decisions.map((decision) => ({
+    ...decision,
+    header: {
+      ...decision.header,
+      type: to_raw_decision_type(decision.header.type),
+      labels: decision.header.labels ?? {},
+      annotations: decision.header.annotations ?? {},
+      locator: decision.header.locator ?? "",
+      severity: to_raw_decision_severity(decision.header.severity),
+    },
+    // JSON.stringify may return undefined (e.g. when the input is undefined)
+    payload: JSON.stringify(decision.payload, json_replacer) ?? "null",
+  }));
 
 /** Produces more informative JSON for builtin classes */
 const json_replacer = (_key: string, value: unknown): unknown => {

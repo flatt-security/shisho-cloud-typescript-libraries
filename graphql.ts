@@ -1,8 +1,13 @@
-/** Definitions used for the types of GraphQL queries */
+/**
+ * Definitions used for the types of GraphQL queries
+ * @module
+ */
+
+/** */
 
 // Scalars
 export type Int = number;
 export type Float = number;
-export type ResourceID = string;
 export type JSON = string;
 export type AWSRegion = string;
+export type { ResourceID } from "./mod.ts";

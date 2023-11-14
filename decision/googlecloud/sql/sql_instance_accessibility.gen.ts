@@ -1,42 +1,50 @@
-import { ResourceID } from "../../../scalars.ts"
-import { as_decision_type, Decision, is_excepted, Severity, SEVERITY_INFO, SEVERITY_HIGH } from "../../mod.ts"
+import type { ResourceID } from "../../../mod.ts";
+import {
+  as_decision_type,
+  Decision,
+  is_excepted,
+  Severity,
+  SEVERITY_HIGH,
+  SEVERITY_INFO,
+} from "../../mod.ts";
 
 /** Ensure Cloud SQL instances are exposed only to specific IP addresses
-  *
-  * You can emit this decision as follows:
-  * 
-  * @example
-  * ```typescript
-  * import { instance_accessibility } from "https://deno.land/x/shisho-cloud-sdk/decision/googlecloud/sql/sql_instance_accessibility.gen.ts"
-  * import { Decision, DecisionPolicy } from "https://deno.land/x/shisho-cloud-sdk/decision/mod.ts"
-  * import { wrap_decision_policy } from "https://deno.land/x/shisho-cloud-sdk/decision/raw.ts"
-  * import { convert_input, Input } from "./input.ts"
-  * 
-  * export const decide: DecisionPolicy<Input> = (input: Input): Decision[] => {
-  *   // ID of the resource reviewed
-  *   // The resource ID can be retrieved from the field "metadata: ResourceMetadata!"
-  *   const subject = something.metadata.id
-  * 
-  *   // Whether this policy allows this resource
-  *   const allowed = true
-  * 
-  *   // Return a list of decisions
-  *   return [instance_accessibility({
-  *     allowed,
-  *     subject,
-  * 
-  *     // Detailed information about the resource
-  *     payload: {
-  *       ip_allowlist: ["example"],
-  *     },
-  *   })]
-  * }
-  * 
-  * export default wrap_decision_policy(convert_input)(decide)
-  * ```
-  * 
-  * @module
-  */
+ *
+ * You can emit this decision as follows:
+ *
+ * @example
+ * ```typescript
+ * import { instance_accessibility } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/googlecloud/sql/sql_instance_accessibility.gen.ts";
+ * import type { Decision, DecisionPolicy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
+ * import { wrap_decision_policy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/raw.ts";
+ * import { convert_input, Input } from "./input.gen.ts";
+ * // You can generate input.gen.ts by `$ shishoctl codegen typescript-input`
+ *
+ * export const decide: DecisionPolicy<Input> = (input: Input): Decision[] => {
+ *   // ID of the resource reviewed
+ *   // The resource ID can be retrieved from the field "metadata: ResourceMetadata!"
+ *   const subject = something.metadata.id;
+ *
+ *   // Whether this policy allows this resource
+ *   const allowed = true;
+ *
+ *   // Return a list of decisions
+ *   return [instance_accessibility({
+ *     allowed,
+ *     subject,
+ *
+ *     // Detailed information about the resource
+ *     payload: {
+ *       ip_allowlist: ["example"],
+ *     },
+ *   })];
+ * }
+ *
+ * export default wrap_decision_policy(convert_input)(decide);
+ * ```
+ *
+ * @module
+ */
 
 /** Emit a decision whose type is decision.api.shisho.dev/v1beta:googlecloud_sql_instance_accessibility" */
 export const instance_accessibility = (
@@ -60,25 +68,27 @@ export const instance_accessibility = (
     "type": as_decision_type(instance_accessibility_allowed(decision, params)),
   },
   "payload": decision.payload,
-})
+});
 
 type InstanceAccessibilityDecisionArgs = {
-  allowed: boolean
-  subject: ResourceID
-  locator?: string
+  allowed: boolean;
+  subject: ResourceID;
+  locator?: string;
   payload: {
-    ip_allowlist: string[]
-  }
+    ip_allowlist: string[];
+  };
 
   /** Override the severity for disallowed decisions */
-  severity?: Severity
-}
+  severity?: Severity;
+};
 
-export type InstanceAccessibilityDefaultParams = { resource_exceptions?: string[] }
+export type InstanceAccessibilityDefaultParams = {
+  resource_exceptions?: string[];
+};
 
-const instance_accessibility_kind = "googlecloud_sql_instance_accessibility"
+const instance_accessibility_kind = "googlecloud_sql_instance_accessibility";
 
 const instance_accessibility_allowed = (
   h: { allowed: boolean; subject: ResourceID },
   params?: { resource_exceptions?: string[] },
-) => is_excepted(h, params) || h.allowed
+) => is_excepted(h, params) || h.allowed;
