@@ -1,4 +1,4 @@
-import { ResourceID } from "../scalars.ts";
+import { ResourceID } from "../mod.ts";
 
 /**
  * Query: generated from the GraphQL query
@@ -11,13 +11,27 @@ export type DecisionPolicy<Query, Params = undefined> = (
 
 export type Decision = {
   header: {
+    /** The namespace and the version of the decision. */
     api_version: string;
+
+    /** The identifier of the decision within the namespace of `api_version`. */
     kind: string;
+
+    /** The resource that the decision is about.
+     * ResourceIDs can be retrieved from the GraphQL type `ResourceMetadata`.
+     */
     subject: ResourceID;
+
+    /** Whether the resource is allowed or not. */
     type: DecisionType;
-    labels: Record<string, string>;
-    annotations: Record<string, string>;
-    locator: string;
+
+    labels?: Record<string, string>;
+    annotations?: Record<string, string>;
+
+    /** Additional information to identify the location of the detected issue within `subject`. */
+    locator?: string;
+
+    /** The importance of the decision. */
     severity: Severity;
   };
   payload: unknown;

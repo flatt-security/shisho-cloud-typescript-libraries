@@ -1,4 +1,7 @@
 {
+  "tasks": {
+    "pre-release": "deno check ./**/*.ts && deno lint ./**/*.ts && deno fmt --ignore='#' ./**/*.ts"
+  },
   "fmt": {
     "semiColons": true,
     "exclude": [

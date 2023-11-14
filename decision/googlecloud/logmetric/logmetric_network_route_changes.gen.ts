@@ -1,42 +1,49 @@
-import { ResourceID } from "../../../scalars.ts"
-import { as_decision_type, Decision, is_excepted, Severity, SEVERITY_INFO } from "../../mod.ts"
+import type { ResourceID } from "../../../mod.ts";
+import {
+  as_decision_type,
+  Decision,
+  is_excepted,
+  Severity,
+  SEVERITY_INFO,
+} from "../../mod.ts";
 
 /** Ensure that the log metric filter and alerts exist for VPC network route changes
-  *
-  * You can emit this decision as follows:
-  * 
-  * @example
-  * ```typescript
-  * import { network_route_changes } from "https://deno.land/x/shisho-cloud-sdk/decision/googlecloud/logmetric/logmetric_network_route_changes.gen.ts"
-  * import { Decision, DecisionPolicy } from "https://deno.land/x/shisho-cloud-sdk/decision/mod.ts"
-  * import { wrap_decision_policy } from "https://deno.land/x/shisho-cloud-sdk/decision/raw.ts"
-  * import { convert_input, Input } from "./input.ts"
-  * 
-  * export const decide: DecisionPolicy<Input> = (input: Input): Decision[] => {
-  *   // ID of the resource reviewed
-  *   // The resource ID can be retrieved from the field "metadata: ResourceMetadata!"
-  *   const subject = something.metadata.id
-  * 
-  *   // Whether this policy allows this resource
-  *   const allowed = true
-  * 
-  *   // Return a list of decisions
-  *   return [network_route_changes({
-  *     allowed,
-  *     subject,
-  * 
-  *     // Detailed information about the resource
-  *     payload: {
-  *       cis_notification_implementations: [{metric_name: "example", alert_policy_name: "example"}],
-  *     },
-  *   })]
-  * }
-  * 
-  * export default wrap_decision_policy(convert_input)(decide)
-  * ```
-  * 
-  * @module
-  */
+ *
+ * You can emit this decision as follows:
+ *
+ * @example
+ * ```typescript
+ * import { network_route_changes } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/googlecloud/logmetric/logmetric_network_route_changes.gen.ts";
+ * import type { Decision, DecisionPolicy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
+ * import { wrap_decision_policy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/raw.ts";
+ * import { convert_input, Input } from "./input.gen.ts";
+ * // You can generate input.gen.ts by `$ shishoctl codegen typescript-input`
+ *
+ * export const decide: DecisionPolicy<Input> = (input: Input): Decision[] => {
+ *   // ID of the resource reviewed
+ *   // The resource ID can be retrieved from the field "metadata: ResourceMetadata!"
+ *   const subject = something.metadata.id;
+ *
+ *   // Whether this policy allows this resource
+ *   const allowed = true;
+ *
+ *   // Return a list of decisions
+ *   return [network_route_changes({
+ *     allowed,
+ *     subject,
+ *
+ *     // Detailed information about the resource
+ *     payload: {
+ *       cis_notification_implementations: [{metric_name: "example", alert_policy_name: "example"}],
+ *     },
+ *   })];
+ * }
+ *
+ * export default wrap_decision_policy(convert_input)(decide);
+ * ```
+ *
+ * @module
+ */
 
 /** Emit a decision whose type is decision.api.shisho.dev/v1beta:googlecloud_logmetric_network_route_changes" */
 export const network_route_changes = (
@@ -60,25 +67,31 @@ export const network_route_changes = (
     "type": as_decision_type(network_route_changes_allowed(decision, params)),
   },
   "payload": decision.payload,
-})
+});
 
 type NetworkRouteChangesDecisionArgs = {
-  allowed: boolean
-  subject: ResourceID
-  locator?: string
+  allowed: boolean;
+  subject: ResourceID;
+  locator?: string;
   payload: {
-    cis_notification_implementations: { metric_name: string, alert_policy_name: string }[]
-  }
+    cis_notification_implementations: {
+      metric_name: string;
+      alert_policy_name: string;
+    }[];
+  };
 
   /** Override the severity for disallowed decisions */
-  severity?: Severity
-}
+  severity?: Severity;
+};
 
-export type NetworkRouteChangesDefaultParams = { resource_exceptions?: string[] }
+export type NetworkRouteChangesDefaultParams = {
+  resource_exceptions?: string[];
+};
 
-const network_route_changes_kind = "googlecloud_logmetric_network_route_changes"
+const network_route_changes_kind =
+  "googlecloud_logmetric_network_route_changes";
 
 const network_route_changes_allowed = (
   h: { allowed: boolean; subject: ResourceID },
   params?: { resource_exceptions?: string[] },
-) => is_excepted(h, params) || h.allowed
+) => is_excepted(h, params) || h.allowed;
