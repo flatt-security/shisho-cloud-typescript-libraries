@@ -14,8 +14,7 @@ import {
  * @example
  * ```typescript
  * import { nacl_changes } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/aws/logmetric/logmetric_nacl_changes.gen.ts";
- * import type { Decision, DecisionPolicy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
- * import { wrap_decision_policy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/raw.ts";
+ * import { Decision, DecisionPolicy, decision_policy_adapter } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
  * import { convert_input, Input } from "./input.gen.ts";
  * // You can generate input.gen.ts by `$ shishoctl codegen typescript-input`
  *
@@ -39,7 +38,7 @@ import {
  *   })];
  * }
  *
- * export default wrap_decision_policy(convert_input)(decide);
+ * export default decision_policy_adapter(convert_input)(decide);
  * ```
  *
  * @module
