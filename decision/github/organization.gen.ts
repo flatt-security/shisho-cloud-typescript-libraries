@@ -15,8 +15,7 @@ import {
  * @example
  * ```typescript
  * import { org_2fa_status } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/github/organization.gen.ts";
- * import type { Decision, DecisionPolicy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
- * import { wrap_decision_policy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/raw.ts";
+ * import { Decision, DecisionPolicy, decision_policy_adapter } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
  * import { convert_input, Input } from "./input.gen.ts";
  * // You can generate input.gen.ts by `$ shishoctl codegen typescript-input`
  *
@@ -40,7 +39,7 @@ import {
  *   })];
  * }
  *
- * export default wrap_decision_policy(convert_input)(decide);
+ * export default decision_policy_adapter(convert_input)(decide);
  * ```
  *
  * @module
@@ -97,8 +96,7 @@ const org_2fa_status_allowed = (
  * @example
  * ```typescript
  * import { org_default_repository_permission } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/github/organization.gen.ts";
- * import type { Decision, DecisionPolicy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
- * import { wrap_decision_policy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/raw.ts";
+ * import { Decision, DecisionPolicy, decision_policy_adapter } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
  * import { convert_input, Input } from "./input.gen.ts";
  * // You can generate input.gen.ts by `$ shishoctl codegen typescript-input`
  *
@@ -122,7 +120,7 @@ const org_2fa_status_allowed = (
  *   })];
  * }
  *
- * export default wrap_decision_policy(convert_input)(decide);
+ * export default decision_policy_adapter(convert_input)(decide);
  * ```
  *
  * @module
@@ -184,8 +182,7 @@ const org_default_repository_permission_allowed = (
  * @example
  * ```typescript
  * import { org_members_permission_on_creating_public_pages } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/github/organization.gen.ts";
- * import type { Decision, DecisionPolicy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
- * import { wrap_decision_policy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/raw.ts";
+ * import { Decision, DecisionPolicy, decision_policy_adapter } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
  * import { convert_input, Input } from "./input.gen.ts";
  * // You can generate input.gen.ts by `$ shishoctl codegen typescript-input`
  *
@@ -209,7 +206,7 @@ const org_default_repository_permission_allowed = (
  *   })];
  * }
  *
- * export default wrap_decision_policy(convert_input)(decide);
+ * export default decision_policy_adapter(convert_input)(decide);
  * ```
  *
  * @module
@@ -270,8 +267,7 @@ const org_members_permission_on_creating_public_pages_allowed = (
  * @example
  * ```typescript
  * import { org_members_permission_on_creating_public_repos } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/github/organization.gen.ts";
- * import type { Decision, DecisionPolicy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
- * import { wrap_decision_policy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/raw.ts";
+ * import { Decision, DecisionPolicy, decision_policy_adapter } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
  * import { convert_input, Input } from "./input.gen.ts";
  * // You can generate input.gen.ts by `$ shishoctl codegen typescript-input`
  *
@@ -295,7 +291,7 @@ const org_members_permission_on_creating_public_pages_allowed = (
  *   })];
  * }
  *
- * export default wrap_decision_policy(convert_input)(decide);
+ * export default decision_policy_adapter(convert_input)(decide);
  * ```
  *
  * @module
@@ -357,8 +353,7 @@ const org_members_permission_on_creating_public_repos_allowed = (
  * @example
  * ```typescript
  * import { org_members_permission_on_private_forking } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/github/organization.gen.ts";
- * import type { Decision, DecisionPolicy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
- * import { wrap_decision_policy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/raw.ts";
+ * import { Decision, DecisionPolicy, decision_policy_adapter } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
  * import { convert_input, Input } from "./input.gen.ts";
  * // You can generate input.gen.ts by `$ shishoctl codegen typescript-input`
  *
@@ -382,7 +377,7 @@ const org_members_permission_on_creating_public_repos_allowed = (
  *   })];
  * }
  *
- * export default wrap_decision_policy(convert_input)(decide);
+ * export default decision_policy_adapter(convert_input)(decide);
  * ```
  *
  * @module
@@ -443,8 +438,7 @@ const org_members_permission_on_private_forking_allowed = (
  * @example
  * ```typescript
  * import { org_owners } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/github/organization.gen.ts";
- * import type { Decision, DecisionPolicy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
- * import { wrap_decision_policy } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/raw.ts";
+ * import { Decision, DecisionPolicy, decision_policy_adapter } from "https://deno.land/x/shisho_cloud_policy_helpers/decision/mod.ts";
  * import { convert_input, Input } from "./input.gen.ts";
  * // You can generate input.gen.ts by `$ shishoctl codegen typescript-input`
  *
@@ -468,7 +462,7 @@ const org_members_permission_on_private_forking_allowed = (
  *   })];
  * }
  *
- * export default wrap_decision_policy(convert_input)(decide);
+ * export default decision_policy_adapter(convert_input)(decide);
  * ```
  *
  * @module
