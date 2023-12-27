@@ -110,7 +110,7 @@ export const decision_policy_adapter = <Query>(
 ): RawDecisionPolicy =>
 (raw_input, raw_data) => {
   const input = convert_input(raw_input);
-  const params = raw_data as Params; // no need for conversion
+  const params = raw_data?.params as Params; // no need for conversion
 
   const decisions = policy(input, params);
 

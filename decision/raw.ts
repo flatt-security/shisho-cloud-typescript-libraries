@@ -12,7 +12,9 @@ export type RawDecisionPolicy = RawPolicy<
   RawDecision[]
 >;
 type RawDecisionPolicyInput = unknown;
-type RawDecisionPolicyData = unknown;
+type RawDecisionPolicyData = {
+  params: unknown;
+};
 export type RawDecision = {
   header: {
     api_version: string;
